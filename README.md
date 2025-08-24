@@ -26,4 +26,4 @@ Este projeto ensina alguns conceitos básicos como:
 - Criação de elementos na página com JavaScript
 - Variáveis e funções básicas
 
-<a href=https://file:///C:/Users/Jailson/Documents/Estudos/Calculadora/index.html>
+<a href=C:/Users/Jailson/Documents/Estudos/Calculadora/index.html>
