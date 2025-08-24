@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title></title>controle de despesas</title>
+    <style>
+        body {
+            font-family: arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 20px;
+         }
+         .container {
+            background: white;
+            padding: 20px;
+            max-width: 400px;
+            margin: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+         }
+         input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+         }
+         ul {
+            list-style: nome;
+            padding: 0;
+         }
+         li {
+            margin: 5px 0;
+         }
+     </style>
+</head>
+<body>
+
+    <div class="container">
+<h2>orçamento pessoal</h2>
+
+<select id="tipo">
+    <option value="receita">Receita</option>
+    <option value="despesa">Despesa</option>
+</select>
+
+<input type="text" id="descricao" placeholder="Descricao">
+<input tupe="number" id="valor" placeholder="Valor">
+
+<button onclick="adicionar()">Adicinar</button>
+
+ <h3>Transações:</h3>
+    <ul id="lista"></ul>
+
+    <h3>Saldo: R$ <span id="saldo">0.00</span></h3>
+</div>
+
+<script>
+    let saldo = 0;
+
+    function adicionar() {
+        let tipo = document.getElementById("tipo").value;
+        let descricao = document.getElementById("descricao").value;
+        let valor = parseFloat(document.getElementById("valor").value);
+
+        if (descricao === "" || isNaN(valor)) {
+            alert("Preencha todos os campos!");
+            return;
+        }
+
+        let lista = document.getElementById("lista");
+        let item = document.createElement("li");
+
+        if (tipo === "receita") {
+            saldo += valor;
+            item.textContent = `+ ${descricao}: R$ ${valor.toFixed(2)}`;
+            item.style.color = "green";
+        } else {
+            saldo -= valor;
+            item.textContent = `- ${descricao}: R$ ${valor.toFixed(2)}`;
+            item.style.color = "red";
+        }
+
+        lista.appendChild(item);
+        document.getElementById("saldo").textContent = saldo.toFixed(2);
+
+        // Limpa os campos
+        document.getElementById("descricao").value = "";
+        document.getElementById("valor").value = "";
+    }
+</script>
+
+</body>
+</html>
